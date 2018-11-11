@@ -1,0 +1,4 @@
+.chalice/
+venv
+*.pyc
+.idea/
