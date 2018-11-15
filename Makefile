@@ -1,5 +1,5 @@
 venv: requirements.txt
-	test -d venv || virtualenv venv
+	test -d venv || virtualenv -p python3.6 venv
 	venv/bin/pip install -Ur requirements_test.txt
 
 local: venv
