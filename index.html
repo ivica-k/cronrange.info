@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cron Range</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="https://example.com" id="dropdown01" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                <div class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </div>
+</nav>
+
+<main role="main" class="container">
+    <div class="container">
+        <div class="row">
+            <div class='col-sm'>
+                <h4 class="text-center">Starting date time</h4>
+                <div class="form-group">
+                    <div class='input-group date'>
+                        <input class="form-control text-center" type="text" id="dtpicker">
+                    </div>
+                </div>
+            </div>
+
+            <div class='col-sm'>
+                <h4 class="text-center">Cron expression</h4>
+                <div class="form-group">
+                    <div class='input-group date'>
+                        <input class="form-control text-center" type="text" id="cron_expression" maxlength="15"
+                               value="*/5 * * * *">
+                    </div>
+                </div>
+            </div>
+            <div class='col-sm'>
+                <h4 class="text-center">Executions to show</h4>
+                <input class="form-control text-center" type="number" id="iterations" min="1" max="100" step="1"
+                       value="5">
+            </div>
+            <div class='col-sm'>
+                <h4 class="">Go</h4>
+                <button type="button" class="btn btn-sm" id="btn">Go!</button>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class='col-sm offset-sm-3'>
+                <h5>Next executions:</h5>
+                <ul id="result">
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.min.js"></script>
+<script>
+
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            $("#dtpicker").daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                timePicker: true,
+                timePicker24Hour: true,
+                startDate: moment().startOf('minute'),
+                endDate: moment().startOf('hour').add(32, 'hour'),
+                locale: {
+                    format: 'DD.MM.YYYY. hh:mm'
+                }
+            });
+        });
+
+        $(function () {
+            $('#btn').click(function () {
+                json_data = {};
+
+                $("#result").text("");
+
+                json_data.datetime = $("#dtpicker").val();
+                json_data.cron = $("#cron_expression").val();
+                json_data.executions = $("#iterations").val();
+
+                $.ajax("http://localhost:8000/", {
+                    data: JSON.stringify(json_data),
+                    contentType: 'application/json',
+                    type: 'POST',
+                    dataType: "JSON",
+                    success: function (data) {
+                        lis = "";
+                        $.each(data.cron_ranges, function (index, element) {
+                            lis += "<li>" + element + "</li>"
+                        });
+                        $("#result").append(lis)
+                    }
+                });
+            });
+        });
+    });
+
+</script>
+
+</html>
