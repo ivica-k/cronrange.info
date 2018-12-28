@@ -7,8 +7,12 @@ from datetime import datetime
 from croniter import croniter, CroniterBadCronError, CroniterBadDateError, CroniterNotAlphaError
 
 
-log = logging.getLogger("cron_range")
-logging.basicConfig(level=logging.DEBUG, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+log = logging.getLogger(__name__)
+log_format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(log_format)
+stream_handler.setLevel(logging.DEBUG)
+log.addHandler(stream_handler)
 DATETIME_FORMAT = "%d.%m.%Y. %H:%M"
 
 
@@ -22,17 +26,18 @@ def parse_args():
 		required=True
 	)
 	parser.add_argument(
-		"-n"
+		"-n",
 		"--executions",
 		default=5,
 		help="Number of next executions to show. Defaults to 5",
 		required=False
 	)
 	parser.add_argument(
-		"-d"
+		"-d",
 		"--start_date",
 		default=datetime.now().strftime(DATETIME_FORMAT),
-		help="Date and time in DD.MM.YYYY. HH:MM format from which to calculate cron executions. Defaults to current date and time.",
+		help="Date and time in DD.MM.YYYY. HH:MM format from which to calculate cron executions."
+		     " Defaults to current date and time.",
 		required=False
 	)
 
@@ -72,5 +77,4 @@ def get_cron_range(num_items, cron_expression, start_datetime=datetime.now().str
 
 if __name__ == "__main__":
 	args = parse_args()
-
-	print(get_cron_range(int(args.n__executions), args.cron, args.d__start_date))
+	print(get_cron_range(args.n__executions, args.cron, args.d__start_date))
