@@ -1,4 +1,4 @@
-.chalice/
+.chalice/deployments
 venv
 *.pyc
 .idea/

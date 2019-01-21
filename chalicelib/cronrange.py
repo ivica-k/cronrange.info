@@ -72,5 +72,5 @@ def get_cron_range(num_items, cron_expression, start_datetime=datetime.now().str
 
 if __name__ == "__main__":
 	args = parse_args()
-	print(type(args.d__start_date))
-	print(get_cron_range(args.n__executions, args.cron, args.d__start_date))
+
+	print(get_cron_range(int(args.n__executions), args.cron, args.d__start_date))
