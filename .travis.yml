@@ -20,21 +20,22 @@ jobs:
       before_install:
         - wget -q https://releases.hashicorp.com/terraform/0.11.11/terraform_0.11.11_linux_amd64.zip
         - unzip terraform_0.11.11_linux_amd64.zip
-      script: ../terraform init && ../terraform plan && ../terraform apply -auto-approve
+        - test "$TRAVIS_BRANCH" = "master" && export ENV="prod" || export ENV="dev"
+      script: ../terraform init && ../terraform plan && ../terraform apply -auto-approve -var 'env=$"{ENV}"'
 
-    - stage: "Tests"
-      name: "unit tests"
-      language: python
-      python:
-        - "3.6"
-      install: pip install -r requirements_test.txt
-      script: python -m unittest discover
-
-    - stage: "Deploy"
-      name: "deploy chalice app"
-      language: python
-      python:
-        - "3.6"
-      install: pip install -r requirements.txt
-      before_script: test "$TRAVIS_BRANCH" = "master" && export CHALICE_ENV="prod" || export CHALICE_ENV="dev"
-      script: chalice deploy --stage "$CHALICE_ENV"
+#    - stage: "Tests"
+#      name: "unit tests"
+#      language: python
+#      python:
+#        - "3.6"
+#      install: pip install -r requirements_test.txt
+#      script: python -m unittest discover
+#
+#    - stage: "Deploy"
+#      name: "deploy chalice app"
+#      language: python
+#      python:
+#        - "3.6"
+#      install: pip install -r requirements.txt
+#      before_script: test "$TRAVIS_BRANCH" = "master" && export ENV="prod" || export ENV="dev"
+#      script: chalice deploy --stage "$CHALICE_ENV"
