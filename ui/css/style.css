@@ -1,0 +1,126 @@
+html, body, main, .row{
+	font-family: 'Chivo', sans-serif;
+	min-height: 100% !important;
+	height: 100%;
+	overflow-x: hidden;
+	background: #313840;
+}
+nav{
+	margin-bottom: 56px !important;
+}
+.bg-dark{
+	background: #262626 !important;
+}
+.container-form{
+	height: 100%;
+    min-height: 680px;
+	width: 100%;
+		
+  	padding-top: 50px;
+}
+.form{
+	width: 90%;
+	margin: 0 auto;
+	transform: translateX(120%);
+	transition: transform 0.5s ease-in-out;
+}
+.form-toggle{
+	transform: translateX(0);
+}
+.form-input{
+	height: 100%;
+	position: fixed;
+	display: flex;
+  	align-items: center;	
+}
+.form-group{
+	margin-bottom: 50px;
+}
+form label, .results h4{
+	text-transform: uppercase;
+	font-size: 20px;
+	text-align: center;
+	display: block;
+	padding-bottom: 10px;
+	color: #01B59F;
+}
+form label span{
+	color: #01B59F;
+}
+.results{
+	padding-top: 100px;
+	position: absolute;
+    right: 0;
+    top: 0;
+    height: auto;
+    min-height: 100vh;
+    background-color: #f2f2f2;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+   	display: block;
+}
+.results-view {
+    transform: translateX(0);  
+}
+.results h4{
+	text-transform: uppercase;
+	font-size: 19px;
+	padding-bottom: 30px;
+}
+.results ol {
+	float: left;
+	width: 25%;
+	padding-left: 0;
+}
+.results li{
+	list-style: none;
+	text-align: center;
+
+}
+.form-control{
+	font-size: 20px;
+	padding: 30px;
+	text-align: center;
+}
+.buttons{
+	display: flex;
+	justify-content:center;
+}
+.btn-results, .btn-copy{
+	width: 180px;
+	height: 50px;
+	margin: 0px auto 50px auto;
+	text-transform: uppercase;
+	background: #01B59F;
+	color: #fff;
+}
+.btn-copy{
+	background: orange;
+}
+.logo {
+	font-size: 1.5em;
+	color: #01B59F !important;
+}
+.logo:hover{
+	text-decoration: none;
+}
+.logo-orange{
+	color: orange;
+}
+@media only screen and (max-width: 990px){
+	/*.form{
+		transform: translateX(60%);
+	}
+	/*.results{		    
+	    transform: translateX(100%);
+	}
+	.results-view {
+	    transform: translateY(0);  
+	}
+	.form-input{
+		position: relative;
+	}*/
+}
+@media only screen and (max-width: 767px){
+	
+}

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cron Range</title>
+    <link href="https://fonts.googleapis.com/css?family=Chivo:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="logo" href="index.html">[CROO ... OON] <span class="logo-orange">Range</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>   
+</nav>
+<main role="main" class="container-fluid">    
+    <div class="row">
+        <div class="container-form">
+            <div class="col-lg-4 col-md-6 col-12 form-input">
+                <form class="form">
+                    <div class="form-group">
+                        <label><span> -- </span> Starting date time <span> -- </span></label>
+                        <div class='input-group date'>
+                            <input class="form-control" type="text" id="dtpicker">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><span> -- </span>Cron expression<span> -- </span></label>
+                        <div class='input-group date'>
+                            <input class="form-control" type="text" id="cron_expression" maxlength="15" value="*/5 * * * *" placeholder="*/5 * * * *">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label><span> -- </span>Executions to show<span> -- </span></label>
+                        <input class="form-control" type="number" id="iterations" min="1" max="100" step="1" value="5" name="quantity">
+                    </div>
+                    <div class="form-group buttons"> 
+                        <button type="button" class="btn btn-results" id="btn">Show results</button>    
+                        <button type="button" class="btn btn-copy disabled" id="btn-copy" onclick="copy('#result')">Copy results</button>
+                    </div>            
+                </form>
+            </div>
+            <div class="col-lg-8 col-md-12 results">
+                <h4><span> -- </span>Next executions<span> -- </span></h4>
+                <p id="result"></p>                 
+            </div> 
+        </div>           
+    </div>    
+</main>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.min.js"></script>
+<script>
+    $(document).ready(function(){
+      $('button#btn').click(function(){    
+        $('form').addClass('form-toggle');
+        $('.results').addClass('results-view');
+        $('#btn-copy').removeClass('disabled');
+      });
+
+    });
+
+    $(document).on('keyup', 'input[name=quantity]', function () {
+        var _this = $(this);
+        var min = parseInt(_this.attr('min')) || 1;
+        var max = parseInt(_this.attr('max')) || 100; 
+        var val = parseInt(_this.val()) || (min - 1); 
+        if(val < min)
+            _this.val( min );
+        if(val > max)
+            _this.val( max );
+    });
+ 
+    function copy(selector){
+      var $temp = $("<div>");
+      $("body").append($temp);
+      $temp.attr("contenteditable", true)
+           .html($(selector).html()).select()
+           .on("focus", function() { document.execCommand('selectAll',false,null) })
+           .focus();
+      document.execCommand("copy");
+      $temp.remove();
+    }
+
+    function chunkArray(myArray, chunk_size){
+        var index = 0;
+        var arrayLength = myArray.length;
+        var tempArray = [];        
+        for (index = 0; index < arrayLength; index += chunk_size) {
+            myChunk = myArray.slice(index, index+chunk_size);
+            tempArray.push(myChunk);
+        }
+        return tempArray;
+    }
+
+    $(document).ready(function () {
+        $(function () {
+            $("#dtpicker").daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                timePicker: true,
+                timePicker24Hour: true,
+                startDate: moment().startOf('minute'),
+                endDate: moment().startOf('hour').add(32, 'hour'),
+                locale: {
+                    format: 'DD.MM.YYYY. HH:mm'
+                }
+            });
+        });
+
+        $(function () {
+            $('#btn').click(function () {
+                json_data = {};
+
+                $("#result").text("");
+
+                json_data.datetime = $("#dtpicker").val();
+                json_data.cron = $("#cron_expression").val();
+                json_data.executions = $("#iterations").val();
+
+                $.ajax("http://localhost:8000/", {
+                    data: JSON.stringify(json_data),
+                    contentType: 'application/json',
+                    type: 'POST',
+                    dataType: "JSON",
+                    success: function (data) {
+                        var columns = chunkArray(data.cron_ranges, 25);
+                        $.each(columns, function (index, column) {
+                            lis = "<ol>";
+                            $.each(column, function (index, element) {
+                                lis += "<li>" + element + "</li>"
+                            });
+                            lis += "</ol>";
+                            $("#result").append(lis);
+                        });
+                        
+                    }
+                });
+            });
+        });
+    });
+
+</script>
+
+</html>
