@@ -4,8 +4,13 @@ provider "aws" {
   version                 = "1.54"
 }
 
+variable "env" {
+  type = "string"
+  default = "dev"
+}
+
 resource "aws_s3_bucket" "cronrange_bucket" {
-  bucket = "cronrange-bucket"
+  bucket = "cronrange-bucket-${var.env}"
   acl    = "public-read"
   policy = "${file("s3_policy.json")}"
 
