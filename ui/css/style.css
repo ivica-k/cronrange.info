@@ -13,22 +13,17 @@ nav{
 }
 .container-form{
 	height: 100%;
-    min-height: 680px;
-	width: 100%;
-		
+	width: 100%;		
   	padding-top: 50px;
 }
 .form{
 	width: 90%;
 	margin: 0 auto;
-	transform: translateX(120%);
 	transition: transform 0.5s ease-in-out;
-}
-.form-toggle{
-	transform: translateX(0);
 }
 .form-input{
 	height: 100%;
+	min-height: 600px;
 	position: fixed;
 	display: flex;
   	align-items: center;	
@@ -47,35 +42,14 @@ form label, .results h4{
 form label span{
 	color: #01B59F;
 }
-.results{
-	padding-top: 100px;
-	position: absolute;
-    right: 0;
-    top: 0;
-    height: auto;
-    min-height: 100vh;
-    background-color: #f2f2f2;
-    transform: translateX(100%);
-    transition: transform 0.5s ease-in-out;
-   	display: block;
-}
-.results-view {
-    transform: translateX(0);  
-}
-.results h4{
-	text-transform: uppercase;
-	font-size: 19px;
-	padding-bottom: 30px;
-}
-.results ol {
+#result ol {
 	float: left;
 	width: 25%;
 	padding-left: 0;
 }
-.results li{
+#result li{
 	list-style: none;
 	text-align: center;
-
 }
 .form-control{
 	font-size: 20px;
@@ -84,9 +58,9 @@ form label span{
 }
 .buttons{
 	display: flex;
-	justify-content:center;
+	justify-content: center;
 }
-.btn-results, .btn-copy{
+.btn-results{
 	width: 180px;
 	height: 50px;
 	margin: 0px auto 50px auto;
@@ -96,6 +70,7 @@ form label span{
 }
 .btn-copy{
 	background: orange;
+	color: #fff;
 }
 .logo {
 	font-size: 1.5em;
@@ -107,20 +82,28 @@ form label span{
 .logo-orange{
 	color: orange;
 }
-@media only screen and (max-width: 990px){
-	/*.form{
-		transform: translateX(60%);
-	}
-	/*.results{		    
-	    transform: translateX(100%);
-	}
-	.results-view {
-	    transform: translateY(0);  
-	}
-	.form-input{
-		position: relative;
-	}*/
+.modal-dialog{
+	max-width: 70% !important;
+	margin: 50px auto;
 }
-@media only screen and (max-width: 767px){
-	
+
+@media only screen and (max-width: 1199px){
+	.modal-dialog{
+		max-width: 95% !important;
+	}
+}
+@media only screen and (max-width: 992px){
+	#result ol{
+		width: 50%;
+	}
+}
+@media only screen and (max-width: 694px){
+	.results ol {
+		width: 50%;
+	}
+}
+@media only screen and (max-width: 575px){
+	#result ol{
+		width: 100%;
+	}
 }
