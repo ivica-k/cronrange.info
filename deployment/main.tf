@@ -1,11 +1,11 @@
 provider "aws" {
-  region                  = "eu-central-1"
-  profile                 = "default"
-  version                 = "1.54"
+  region  = "eu-central-1"
+  profile = "default"
+  version = "1.54"
 }
 
 variable "env" {
-  type = "string"
+  type    = "string"
   default = "dev"
 }
 
@@ -13,8 +13,8 @@ data "template_file" "s3_policy" {
   template = "${file("s3_policy.json")}"
 
   vars {
-      bucket_name = "cronrange-bucket-${var.env}"
-    }
+    bucket_name = "cronrange-bucket-${var.env}"
+  }
 }
 
 resource "aws_s3_bucket" "cronrange_bucket" {
