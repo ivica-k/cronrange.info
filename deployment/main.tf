@@ -9,10 +9,18 @@ variable "env" {
   default = "dev"
 }
 
+data "template_file" "s3_policy" {
+  template = "${file("s3_policy.json")}"
+
+  vars {
+      bucket_name = "cronrange-bucket-${var.env}"
+    }
+}
+
 resource "aws_s3_bucket" "cronrange_bucket" {
   bucket = "cronrange-bucket-${var.env}"
   acl    = "public-read"
-  policy = "${file("s3_policy.json")}"
+  policy = "${data.template_file.s3_policy.rendered}"
 
   website {
     index_document = "index.html"
@@ -21,5 +29,5 @@ resource "aws_s3_bucket" "cronrange_bucket" {
 }
 
 output "website_url" {
-  value = "${aws_s3_bucket.cronrange_bucket.website_endpoint}"
+  value = "http://${aws_s3_bucket.cronrange_bucket.website_endpoint}"
 }
