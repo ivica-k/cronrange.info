@@ -33,17 +33,7 @@ jobs:
       script: python -m unittest discover
 
     - stage: "Deploy"
-      name: "deploy chalice app"
-      language: python
-      python:
-        - "3.6"
-      install: pip install -r requirements.txt
-      before_script:
-        - test "$TRAVIS_BRANCH" = "master" && export ENV="prod" || export ENV="dev"
-      script: chalice deploy --stage "$ENV"
-
-    - stage: "Deploy"
-      name: "deploy chalice app"
+      name: name: "deploy chalice app"
       language: python
       python:
         - "3.6"
