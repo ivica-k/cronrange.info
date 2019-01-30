@@ -2,36 +2,37 @@ html, body, main, .row{
 	font-family: 'Chivo', sans-serif;
 	min-height: 100% !important;
 	height: 100%;
-	overflow-x: hidden;
 	background: #313840;
-}
-nav{
-	margin-bottom: 56px !important;
+	padding-top: 20px;
 }
 .bg-dark{
 	background: #262626 !important;
 }
-.container-form{
-	height: 100%;
-	width: 100%;		
-  	padding-top: 50px;
+.logo {
+	font-size: 1.5em;
+	color: #01B59F !important;
 }
-.form{
-	width: 90%;
-	margin: 0 auto;
-	transition: transform 0.5s ease-in-out;
+.logo:hover{
+	text-decoration: none;
 }
-.form-input{
-	height: 100%;
-	min-height: 600px;
-	position: fixed;
-	display: flex;
-  	align-items: center;	
+.logo-orange{
+	color: orange;
 }
 .form-group{
 	margin-bottom: 50px;
 }
-form label, .results h4{
+.flex{
+	height: 100%;
+	min-height: 650px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+form{
+	width: 90%;
+	margin: 0 auto;
+}
+form label{
 	text-transform: uppercase;
 	font-size: 20px;
 	text-align: center;
@@ -42,18 +43,9 @@ form label, .results h4{
 form label span{
 	color: #01B59F;
 }
-#result ol {
-	float: left;
-	width: 25%;
-	padding-left: 0;
-}
-#result li{
-	list-style: none;
-	text-align: center;
-}
 .form-control{
 	font-size: 20px;
-	padding: 30px;
+	padding: 25px 10px;
 	text-align: center;
 }
 .buttons{
@@ -72,38 +64,27 @@ form label span{
 	background: orange;
 	color: #fff;
 }
-.logo {
-	font-size: 1.5em;
-	color: #01B59F !important;
+#result ol {
+	float: left;
+	width: 25%;
+	padding-left: 0;
 }
-.logo:hover{
-	text-decoration: none;
-}
-.logo-orange{
-	color: orange;
+#result li{
+	list-style: none;
+	text-align: center;
 }
 .modal-dialog{
 	max-width: 70% !important;
 	margin: 50px auto;
 }
 
-@media only screen and (max-width: 1199px){
-	.modal-dialog{
-		max-width: 95% !important;
-	}
-}
-@media only screen and (max-width: 992px){
-	#result ol{
+@media only screen and (max-width: 1100px){
+	#result ol {
 		width: 50%;
 	}
 }
-@media only screen and (max-width: 694px){
-	.results ol {
-		width: 50%;
-	}
-}
-@media only screen and (max-width: 575px){
-	#result ol{
+@media only screen and (max-width: 580px){
+	#result ol {
 		width: 100%;
 	}
 }
