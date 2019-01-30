@@ -1,4 +1,6 @@
-.chalice/deployments
+.chalice/deploym*
 venv
 *.pyc
 .idea/
+.terraform/
+*.tfstate.backup
