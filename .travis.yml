@@ -33,7 +33,7 @@ jobs:
       script: python -m unittest discover
 
     - stage: "Deploy"
-      name: name: "deploy chalice app"
+      name: "deploy chalice app"
       language: python
       python:
         - "3.6"
