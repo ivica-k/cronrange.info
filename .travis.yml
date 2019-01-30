@@ -38,3 +38,4 @@ jobs:
       python:
         - "3.6"
       script: ./deploy_app_and_ui.sh
+      after_script: echo "BYE!"
