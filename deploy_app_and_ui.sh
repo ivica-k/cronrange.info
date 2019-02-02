@@ -11,4 +11,8 @@ CHALICE_URL=$(./venv/bin/chalice url)
 
 sed -i "s|http://localhost:8000/|$CHALICE_URL/|g" ./ui/index.html
 
-./venv/bin/aws s3 cp ./ui/. s3://cronrange-bucket-$ENV/ --recursive
+if [[ "${ENV}" = "dev" ]]; then
+    ./venv/bin/aws s3 cp ./ui/. s3://dev.cronrange.info/ --recursive
+else
+    ./venv/bin/aws s3 cp ./ui/. s3://cronrange.info/ --recursive
+fi
