@@ -4,14 +4,6 @@ from datetime import datetime
 app = Chalice(app_name="cron_range")
 
 
-@app.route("/health", methods=["GET"])
-def health_handler():
-	return Response(
-		status_code=200,
-		body={}
-	)
-
-
 @app.route("/", methods=["POST"], content_types=["application/json"], cors=True)
 def index_handler():
 	try:

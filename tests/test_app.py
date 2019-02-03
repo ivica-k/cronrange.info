@@ -13,16 +13,6 @@ class TestChaliceApp(unittest.TestCase):
 	def setUp(self):
 		self.chalice_gateway = LocalGateway(app, Config())
 
-	def test_health(self):
-		response = self.chalice_gateway.handle_request(
-			method="GET",
-			path="/health",
-			headers={},
-			body=""
-		)
-
-		self.assertEqual(response.get("statusCode"), 200)
-
 	def test_invalid_keys(self):
 		body = json.dumps({"crons": "abc", "executions": "5"})
 		response = self.chalice_gateway.handle_request(
