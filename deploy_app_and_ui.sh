@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
+set -e
+set -x
 
 test -d venv || virtualenv -p python3 venv
 venv/bin/pip install -Ur requirements.txt
