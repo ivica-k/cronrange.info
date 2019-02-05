@@ -11,13 +11,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.min.css" />
     <title>Cron Range - easily predict your cron runs</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
   </head>
   <body>
     <header>
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="logo" title="logo" href="/">[CR-ON] <span class="logo-orange">Range</span></a>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark d-flex justify-content-between">
+        <a class="logo" title="Cron Range" href="/"><span class="cron">[CR-ON]</span> <span class="logo-orange">Range</span><sup>BETA</sup></a> 
+        <a href="https://github.com/ivica-k/chalice_cronrange" target="_blank"><img src="img/github.png" class="git-hub" title="Gut Hub"></a>
       </nav>
+
     </header>    
     <main role="main" class="container-fluid">
       <div class="row">
@@ -26,21 +28,24 @@
             <div class="form-group">
               <label><h1><span> -- </span>Starting date time<span> -- </span></h1></label>
               <div class="input-group date">
-                <input class="form-control" type="text" id="dtpicker" />
+                <input class="form-control" type="text" id="dtpicker" title="Date and time" />
               </div>
             </div>
             <div class="form-group">
               <label><h1><span> -- </span>Cron expression<span> -- </span></h1></label>
               <div class="input-group">
-                <input class="form-control" type="text" id="cron_expression" maxlength="15" placeholder="*/5 * * * *" autofocus="true" required=""/>
+                <input class="form-control" type="text" id="cron_expression" maxlength="15" placeholder="*/5 * * * *" autofocus="true" required="" title="Cron expression"/>
+              </div>
+              <div class="alert alert-danger" id="alert" role="alert">
+                <p id="error-message"></p>
               </div>
             </div>
             <div class="form-group">
               <label><h1><span> -- </span>Executions to show<span> -- </span></h1></label>
-              <input class="form-control" type="number" id="iterations" min="1" max="100" step="1" value="10" name="quantity" />
+              <input class="form-control" type="number" id="iterations" min="1" max="100" step="1" value="10" name="quantity" title="Executions to show"/>
             </div>
             <div class="form-group buttons">
-              <button type="button" class="btn btn-results" id="btn" data-toggle="modal" data-target="#modal">Show results</button>
+              <button type="button" class="btn btn-results" id="btn" title="Show results">Show results</button>
             </div>
           </form>
         </div>
@@ -54,8 +59,8 @@
                 </div>
                 <div class="modal-body"><p id="result"></p></div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-copy" id="btn-copy" onclick="copy('#result')" data-container="body" data-toggle="popover" data-placement="top">Copy results</button>
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-copy" id="btn-copy" onclick="copy('#result')" data-container="body" data-toggle="popover" data-placement="top" title="Copy results">Copy results</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" title="Close">Close</button>
                 </div>
             </div>
         </div>
@@ -64,15 +69,14 @@
 <footer>
   <div class="container">
     <h2>Have you ever wondered when will your cron job be triggered, or how many times? </h2>
-    <p><span class="cron"><b>Cron</b></span> <span class="range"><b>Range</b></span> allows you to easily predict up to 100 dates and times of your cron job executions. Choose a starting datetime, enter the cron expression and pick the number of predictions you would like to see. </p>
+    <p><span class="cron"><b>Cron</b></span> <span class="range"><b>Range</b></span> allows you to easily predict up to 100 dates and times of your cron job executions. Choose a starting datetime, enter the <a href="https://en.wikipedia.org/wiki/Cron" target="_blank" class="link-cron-expression" title="Wikipedia - cron expression">cron expression</a> and pick the number of predictions you would like to see. </p>
   </div>
 </footer>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.3/daterangepicker.min.js"></script>
-<script type="text/javascript" src="js/main.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
