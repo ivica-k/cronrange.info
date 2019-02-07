@@ -1,0 +1,180 @@
+#result li,
+.form-control,
+footer .container,
+form {
+    text-align: center
+}
+
+.btn-results,
+footer h2,
+form label h1 {
+    text-transform: uppercase
+}
+
+body,
+html {
+    font-family: Chivo, sans-serif;
+    min-height: 100%!important;
+    height: 100%;
+    background: #313840;
+    padding-top: 70px
+}
+
+.bg-dark {
+    background: #262626!important;
+}
+
+.logo {
+    font-size: 1.5em;
+    margin-left: 20px;
+}
+.logo:hover, .logo,.btn-results,.btn-copy,footer .container {
+	color: #fff !important;
+}
+sup{
+	font-size: 10px;
+	font-weight: 500;
+	top: -1.5em !important;
+}
+
+.logo:hover {
+    text-decoration: none
+}
+
+.logo-orange,
+.range {
+    color: orange
+}
+
+.cron,
+form label h1,
+form label span{
+    color: #01B59F
+}
+
+.form-group {
+    margin-bottom: 45px
+}
+
+.flex {
+    height: 100%;
+    min-height: 580px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center
+}
+
+form {
+    width: 90%;
+    margin: 0 auto
+}
+
+form label h1 {
+    font-size: 20px;
+    display: inline-block;
+    padding-bottom: 10px
+}
+
+.form-control {
+    font-size: 20px;
+    padding: 25px 10px
+}
+
+.buttons {
+    display: flex;
+    justify-content: center
+}
+
+.btn-results {
+    width: 180px;
+    height: 50px;
+    margin: 0 auto 50px;
+    background: #01B59F;
+}
+
+.btn-copy {
+    background: orange;
+}
+
+#result ol {
+    float: left;
+    width: 25%;
+    padding-left: 0
+}
+
+#result li {
+    list-style: none
+}
+
+.one-column {
+    float: none!important;
+    margin: 0 auto
+}
+
+.two-columns {
+    width: 33%!important;
+    margin: 0 0 0 10%
+}
+
+.three-columns {
+    width: 33%!important;
+    margin: 0 auto
+}
+
+.modal-dialog {
+    max-width: 70%!important;
+    margin: 50px auto
+}
+
+.invalid {
+    background: #dc9f9f!important
+}
+.git-hub{
+	margin-right: 20px;
+}
+.link-cron-expression{
+	color: #fff;
+	border-bottom: 1px solid #01B59F;
+}
+.link-cron-expression:hover{
+	text-decoration: none;
+	color: orange;
+}
+footer .container {
+    padding: 45px 10px;
+}
+
+footer p {
+    font-weight: 300
+}
+
+footer h2 {
+    font-size: 20px;
+    padding-bottom: 10px
+}
+.alert{
+	display: none;
+}
+.alert p{
+	margin: 0;
+}
+.alert-error{
+	margin-top: 10px;
+	display: block;
+}
+
+@media only screen and (max-width:1100px) {
+    #result ol {
+        width: 50%
+    }
+}
+
+@media only screen and (max-width:580px) {
+    #result ol {
+        width: 100%
+    }
+    body,
+    html {
+        padding-top: 60px
+    }
+}
