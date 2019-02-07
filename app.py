@@ -10,7 +10,7 @@ def index_handler():
 		request_json = app.current_request.json_body
 		cron = request_json["cron"]
 		executions = int(request_json["executions"])
-		date_time = request_json.get("start_date", datetime.now())
+		date_time = request_json.get("datetime", datetime.now())
 
 		ranges = get_cron_range(
 			num_items=executions,

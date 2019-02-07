@@ -34,6 +34,8 @@ class TestCronRange(unittest.TestCase):
 		(5, 5),
 		(102, 102),
 		(1000, 1000),
+		("5", 5),
+		("25", 25),
 	])
 	def test_get_multiple_cron_ranges(self, num_ranges, expected_ranges):
 		ranges = get_cron_range(num_ranges, "*/5 * * * *")

@@ -62,7 +62,7 @@ def get_cron_range(num_items, cron_expression, start_datetime=datetime.now().str
 	try:
 		croniter_object = croniter(cron_expression, start_datetime)
 
-		for _ in range(num_items):
+		for _ in range(int(num_items)):
 			cron_executions.append(str(croniter_object.get_next(datetime)))
 
 		return cron_executions
@@ -77,4 +77,4 @@ def get_cron_range(num_items, cron_expression, start_datetime=datetime.now().str
 
 if __name__ == "__main__":
 	args = parse_args()
-	print(get_cron_range(args.n__executions, args.cron, args.d__start_date))
+	print(get_cron_range(args.executions, args.cron, args.start_date))

@@ -1,4 +1,4 @@
-## cron_range
+## cron_range [![Build Status](https://travis-ci.com/ivica-k/chalice_cronrange.svg?branch=master)](https://travis-ci.com/ivica-k/chalice_cronrange)
 Displays the next N number of executions for a given cron expression. Consists of a `cronrange` library based on [croniter](https://github.com/kiorky/croniter) that you can run from the CLI, and from an API running on [AWS Lambda](https://github.com/aws/chalice) with API Gateway which you can also run locally
 
 #### virtual env
