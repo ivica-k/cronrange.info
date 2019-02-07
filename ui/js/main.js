@@ -25,8 +25,7 @@ $(document).on("keyup", "input[name=quantity]", function() {
             showDropdowns: !0,
             timePicker: !0,
             timePicker24Hour: !0,
-            startDate: moment().startOf("minute"),
-            endDate: moment().startOf("hour").add(32, "hour"),
+            startDate: moment().startOf("minute").utc(),
             locale: {
                 format: "DD.MM.YYYY. HH:mm"
             }
@@ -36,6 +35,7 @@ $(document).on("keyup", "input[name=quantity]", function() {
     $("#btn").click(function() {
         if ("" == $("#cron_expression").val()) return $("#cron_expression").addClass("invalid"), !1;
         json_data = {}, $("#result").text(""), json_data.datetime = $("#dtpicker").val(), json_data.cron = $("#cron_expression").val(), json_data.executions = $("#iterations").val(), $("#modalTitle").text("Next " + json_data.executions + " executions"), $.ajax("http://localhost:8000/", {
+            
             data: JSON.stringify(json_data),
             contentType: "application/json",
             type: "POST",
@@ -47,7 +47,7 @@ $(document).on("keyup", "input[name=quantity]", function() {
                 var e = chunkArray(t.cron_ranges, 25);
                 $.each(e, function(t, n) {
                     lis = "<ol>", $.each(n, function(t, n) {
-                        lis += "<li>" + n + "</li>"
+                        lis += "<li>" + n + " UTC</li>"
                     }), lis += "</ol>", $("#result").append(lis), e.length <= 1 ? $("ol").addClass("one-column") : e.length <= 2 ? $("ol").addClass("two-columns") : e.length <= 3 && $("ol").addClass("three-columns")
                 })
             },
