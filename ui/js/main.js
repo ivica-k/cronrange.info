@@ -48,7 +48,7 @@ $(document).ready(function () {
     });
 });
 
- $(function() {
+$(function() {
     $("#btn").click(function() {
         if($('#cron_expression').val() == ""){
             $('#cron_expression').addClass("invalid");
@@ -60,7 +60,7 @@ $(document).ready(function () {
             json_data.datetime = $("#dtpicker").val();
             json_data.cron = $("#cron_expression").val();
             json_data.executions = $("#iterations").val();
-            $("#modalTitle").text("Next " + json_data.executions + " executions");
+            $("#modalTitle").text("Next " + json_data.executions + " executions. All times are UTC");
             $.ajax("http://localhost:8000/", {            
                 data: JSON.stringify(json_data),
                 contentType: "application/json",
@@ -74,19 +74,10 @@ $(document).ready(function () {
                     $.each(columns, function(index, column) {
                         lis = "<ol>"; 
                         $.each(column, function(index, element) {
-                            lis += "<li>" + element + " UTC</li>"
+                            lis += "<li>" + element + "</li>"
                         }); 
                         lis += "</ol>"; 
                         $("#result").append(lis);
-                        if(columns.length <= 1){
-                            $("ol").addClass("one-column");
-                        } 
-                        else if(columns.length <=2){
-                            $("ol").addClass("two-columns");
-                        }
-                        else if(columns.length <= 3){
-                            $("ol").addClass("three-columns");
-                        }
                     });
                 },
                 error: function(err){
@@ -97,3 +88,4 @@ $(document).ready(function () {
         }            
     });
 });
+
