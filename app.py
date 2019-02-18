@@ -9,8 +9,11 @@ def index_handler():
 	try:
 		request_json = app.current_request.json_body
 		cron = request_json["cron"]
-		executions = int(request_json["executions"])
+		executions = int(request_json.get("executions", 100))
 		date_time = request_json.get("datetime", datetime.now())
+
+		if executions > 100:
+			executions = 100
 
 		ranges = get_cron_range(
 			num_items=executions,
@@ -32,7 +35,7 @@ def index_handler():
 	except ValueError:
 		return Response(
 			status_code=400,
-			body={"message": "Field 'iterations' must be a number"}
+			body={"message": "Field 'executions' must be a number"}
 		)
 
 	except BadRequestError:

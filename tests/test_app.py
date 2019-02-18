@@ -31,8 +31,8 @@ class TestChaliceApp(unittest.TestCase):
 	@parameterized.expand([
 		("2",),
 		("12",),
-		("102",),
-		("1000",),
+		("50",),
+		("69",),
 	])
 	def test_get_number_of_iterations(self, input_string):
 		body = json.dumps({"cron": "*/5 * * * *", "executions": input_string})
@@ -45,6 +45,22 @@ class TestChaliceApp(unittest.TestCase):
 		ranges = json.loads(response.get("body")).get("cron_ranges")
 
 		self.assertEqual(int(input_string), len(ranges))
+
+	@parameterized.expand([
+		("102", 100),
+		("1000", 100),
+	])
+	def test_get_number_of_iterations_limit_to_100(self, input_string, expected_ranges):
+		body = json.dumps({"cron": "*/5 * * * *", "executions": input_string})
+		response = self.chalice_gateway.handle_request(
+			method="POST",
+			path="/",
+			headers={"Content-Type": "application/json"},
+			body=body
+		)
+		ranges = json.loads(response.get("body")).get("cron_ranges")
+
+		self.assertEqual(expected_ranges, len(ranges))
 
 	@parameterized.expand([
 		("2a",),
