@@ -17,7 +17,21 @@
     <header>
       <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark d-flex justify-content-between">
         <a class="logo" title="Cron Range" href="/"><span class="cron">[CR-ON]</span> <span class="logo-orange">Range</span><sup>BETA</sup></a> 
-        <a href="https://github.com/ivica-k/chalice_cronrange" target="_blank"><img src="img/github.png" class="git-hub" title="Gut Hub"></a>
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Cron examples
+            </a>
+            <div class="dropdown-menu" id="cron-examples" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="#" value="*/5 * * * *">*/5 * * * * <br>- every five minutes</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" value="15 14 1 * *">15 14 1 * * <br>- at 14:15 every 1st of the month</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#" value="0 0 1,15 * *">0 0 1,15 * * <br>- every 1st and 15th at 00:00</a>
+            </div>
+          </li>
+        </ul> 
+        <a href="https://github.com/ivica-k/chalice_cronrange" target="_blank"><img src="img/github.png" class="git-hub" title="GitHub"></a>        
       </nav>
 
     </header>    
