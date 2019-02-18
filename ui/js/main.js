@@ -53,7 +53,7 @@ $(function() {
         if($('#cron_expression').val() == ""){
             $('#cron_expression').addClass("invalid");
             return false;
-          }
+        }
         else{
             json_data = {};
             $("#result").text("");
@@ -89,3 +89,7 @@ $(function() {
     });
 });
 
+$('#cron-examples a').click(function(e) {
+  var example_cron = $(e.target).attr('value');
+  $('#cron_expression').val(example_cron);
+});

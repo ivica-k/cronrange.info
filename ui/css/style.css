@@ -22,6 +22,12 @@ html {
 .bg-dark {
     background: #262626!important;
 }
+#navbarDropdown{
+    color: #fff !important;
+}
+#navbarDropdown:hover{
+    color: #ccc !important;
+}
 
 .logo {
     font-size: 1.5em;
@@ -120,6 +126,7 @@ form label h1 {
     background: #dc9f9f!important
 }
 .git-hub{
+    float: right;
 	margin-right: 20px;
 }
 .link-cron-expression{
@@ -130,8 +137,11 @@ form label h1 {
 	text-decoration: none;
 	color: orange;
 }
+.example{
+    color: orange;
+}
 footer .container {
-    padding: 45px 10px;
+    padding: 45px 20px;
 }
 
 footer p {
@@ -152,17 +162,43 @@ footer h2 {
 	margin-top: 10px;
 	display: block;
 }
+.navbar-nav{
+    margin-left: 50px;
+}
 @media only screen and (max-width:1160px) {
     .modal-dialog{
         max-width: 95% !important;
     }
 }
-@media only screen and (max-width:500px) {
+@media only screen and (max-width:767px) {
+    .git-hub{
+        display: none;
+    }
+    .logo{
+        width: 100%;
+    }
+    .navbar-nav{
+        margin-left: 20px;
+    }
+}
+@media only screen and (max-width:600px) {
     body,
     html {
         padding-top: 60px
     }
-    form label h1 {
-        font-size: 18px;
+    form label h1, footer h2 {
+        font-size: 17px;
+    }
+    footer .container{
+        padding-top: 20px; 
+    }
+}
+@media only screen and (max-width:500px) {
+    body,
+    html {
+        padding-top: 55px;
+    }
+    footer .container{
+        padding-top: 0; 
     }
 }
