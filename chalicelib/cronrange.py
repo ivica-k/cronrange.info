@@ -53,11 +53,29 @@ def _convert_string_to_datetime(datetime_string):
 		sys.exit(1)
 
 
+def handle_eventbridge_expression(cron_expression):
+	# EventBridge cron expression composition
+	# min	hour	day-of-month	month	day-of-week	year
+	# 0/5	8-17	? 				*		MON-FRI 	*
+
+	log.info(f"Received EventBridge style cron expression '{cron_expression}'")
+	minute, hour, day_of_month, month, day_of_week, year = cron_expression.split()
+
+	# remove '?' and omit the year so that the `croniter` library accepts the expression
+	compatible_expression = f"{minute} {hour} {day_of_month} {month} {day_of_week}".replace("?", "*")
+	log.info(f"Converted to '{compatible_expression}'")
+
+	return compatible_expression
+
+
 def get_cron_range(num_items, cron_expression, start_datetime=datetime.now().strftime(DATETIME_FORMAT)):
 	cron_executions = []
 	if isinstance(start_datetime, str):
 		start_datetime = _convert_string_to_datetime(start_datetime)
 	log.debug(f"Getting {num_items} iterations for '{cron_expression}' starting at '{start_datetime}'")
+
+	if len(cron_expression.split()) == 6 and "?" in cron_expression:
+		cron_expression = handle_eventbridge_expression(cron_expression)
 
 	try:
 		croniter_object = croniter(cron_expression, start_datetime)
