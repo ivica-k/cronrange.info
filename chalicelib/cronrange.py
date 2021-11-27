@@ -28,8 +28,8 @@ def parse_args():
 	parser.add_argument(
 		"-n",
 		"--executions",
-		default=5,
-		help="Number of next executions to show. Defaults to 5",
+		default=10,
+		help="Number of next executions to show. Defaults to 10",
 		required=False
 	)
 	parser.add_argument(
