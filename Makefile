@@ -1,9 +1,9 @@
 venv: requirements.txt
 	test -d venv || virtualenv -p python3 venv
-	venv/bin/pip install -Ur requirements_test.txt
+	venv/bin/pip install -Ur test_requirements.txt
 
 local: venv
-	venv/bin/chalice local
+	venv/bin/chalice local --no-autoreload
 
 test: venv
 	venv/bin/python -m unittest discover

@@ -1,2 +1,2 @@
-chalice==1.6.0
-croniter==0.3.25
+chalice==1.26.2
+croniter==1.0.15
