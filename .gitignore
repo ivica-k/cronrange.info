@@ -1,6 +1,14 @@
 .chalice/deploym*
-venv
+venv/
 *.pyc
 .idea/
 .terraform/
+**/.terraform/*
 *.tfstate.backup
+__pycache__/
+*.py[cod]
+.terraform.lock.hcl
+terraform.tfstate
+*.tfstate
+*.tfstate.*
+*.zip
