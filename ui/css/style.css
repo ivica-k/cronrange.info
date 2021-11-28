@@ -10,6 +10,7 @@ footer h2,
 form label h1 {
     text-transform: uppercase
 }
+
 body,
 html {
     font-family: Chivo, sans-serif;
@@ -21,12 +22,6 @@ html {
 
 .bg-dark {
     background: #262626!important;
-}
-#navbarDropdown{
-    color: #fff !important;
-}
-#navbarDropdown:hover{
-    color: #ccc !important;
 }
 
 .logo {
@@ -87,8 +82,7 @@ form label h1 {
 
 .buttons {
     display: flex;
-    justify-content: center;
-    margin-bottom: 0;
+    justify-content: center
 }
 
 .btn-results {
@@ -103,22 +97,32 @@ form label h1 {
 }
 
 #result ol {
-    padding: 0 20px;    
-}
-#result{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    float: left;
+    width: 25%;
+    padding-left: 0
 }
 
 #result li {
-    list-style: none;    
-    display: block;
-    margin: 0 auto;
+    list-style: none
+}
+
+.one-column {
+    float: none!important;
+    margin: 0 auto
+}
+
+.two-columns {
+    width: 33%!important;
+    margin: 0 0 0 10%
+}
+
+.three-columns {
+    width: 33%!important;
+    margin: 0 auto
 }
 
 .modal-dialog {
-    max-width: 80% !important;
+    max-width: 70%!important;
     margin: 50px auto
 }
 
@@ -126,7 +130,6 @@ form label h1 {
     background: #dc9f9f!important
 }
 .git-hub{
-    float: right;
 	margin-right: 20px;
 }
 .link-cron-expression{
@@ -137,11 +140,8 @@ form label h1 {
 	text-decoration: none;
 	color: orange;
 }
-.example{
-    color: orange;
-}
 footer .container {
-    padding: 45px 20px;
+    padding: 45px 10px;
 }
 
 footer p {
@@ -162,43 +162,19 @@ footer h2 {
 	margin-top: 10px;
 	display: block;
 }
-.navbar-nav{
-    margin-left: 50px;
-}
-@media only screen and (max-width:1160px) {
-    .modal-dialog{
-        max-width: 95% !important;
+
+@media only screen and (max-width:1100px) {
+    #result ol {
+        width: 50%
     }
 }
-@media only screen and (max-width:767px) {
-    .git-hub{
-        display: none;
+
+@media only screen and (max-width:580px) {
+    #result ol {
+        width: 100%
     }
-    .logo{
-        width: 100%;
-    }
-    .navbar-nav{
-        margin-left: 20px;
-    }
-}
-@media only screen and (max-width:600px) {
     body,
     html {
         padding-top: 60px
-    }
-    form label h1, footer h2 {
-        font-size: 17px;
-    }
-    footer .container{
-        padding-top: 20px; 
-    }
-}
-@media only screen and (max-width:500px) {
-    body,
-    html {
-        padding-top: 55px;
-    }
-    footer .container{
-        padding-top: 0; 
     }
 }

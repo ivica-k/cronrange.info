@@ -21,7 +21,7 @@ def index_handler():
 	try:
 		request_json = app.current_request.json_body
 		cron = request_json["cron"]
-		executions = int(request_json.get("executions", 100))
+		executions = int(request_json.get("executions", 10))
 		date_time = request_json.get("datetime", datetime.now())
 
 		app.log.info(f"Got a request with cron: '{cron}'; Executions: '{executions}'; Datetime '{date_time}'")

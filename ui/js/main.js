@@ -48,19 +48,24 @@ $(document).ready(function () {
     });
 });
 
-$(function() {
+$("#cron-examples a").click(function (element) {
+    var text = $(element.target).attr("value");
+    $("#cron_expression").val(text);
+});
+
+ $(function() {
     $("#btn").click(function() {
         if($('#cron_expression').val() == ""){
             $('#cron_expression').addClass("invalid");
             return false;
-        }
+          }
         else{
             json_data = {};
             $("#result").text("");
             json_data.datetime = $("#dtpicker").val();
             json_data.cron = $("#cron_expression").val();
             json_data.executions = $("#iterations").val();
-            $("#modalTitle").text("Next " + json_data.executions + " executions. All times are UTC");
+            $("#modalTitle").text("Next " + json_data.executions + " executions");
             $.ajax("http://localhost:8000/", {            
                 data: JSON.stringify(json_data),
                 contentType: "application/json",
@@ -74,10 +79,19 @@ $(function() {
                     $.each(columns, function(index, column) {
                         lis = "<ol>"; 
                         $.each(column, function(index, element) {
-                            lis += "<li>" + element + "</li>"
+                            lis += "<li>" + element + " UTC</li>"
                         }); 
                         lis += "</ol>"; 
                         $("#result").append(lis);
+                        if(columns.length <= 1){
+                            $("ol").addClass("one-column");
+                        } 
+                        else if(columns.length <=2){
+                            $("ol").addClass("two-columns");
+                        }
+                        else if(columns.length <= 3){
+                            $("ol").addClass("three-columns");
+                        }
                     });
                 },
                 error: function(err){
@@ -87,9 +101,4 @@ $(function() {
             });
         }            
     });
-});
-
-$('#cron-examples a').click(function(e) {
-  var example_cron = $(e.target).attr('value');
-  $('#cron_expression').val(example_cron);
 });
