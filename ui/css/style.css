@@ -24,13 +24,25 @@ html {
     background: #262626!important;
 }
 
+.navbar-nav {
+    margin-left: 10px;
+    display: inline-block;
+}
+
+.navbar-menu-logo {
+    width: 80%;
+}
+
 .logo {
     font-size: 1.5em;
-    margin-left: 20px;
+    margin: 0 20px;
+    display: inline-block;
 }
+
 .logo:hover, .logo,.btn-results,.btn-copy,footer .container {
 	color: #fff !important;
 }
+
 sup{
 	font-size: 10px;
 	font-weight: 500;
@@ -176,5 +188,29 @@ footer h2 {
     body,
     html {
         padding-top: 60px
+    }
+}
+
+@media only screen and (max-width:480px) {
+    .navbar-nav, .logo {
+        margin-left: 10px;
+    }
+
+    .navbar-nav {
+        width: 120%;
+    }
+    
+    .navbar-nav .dropdown-menu {
+        position: absolute;
+        width: 100%;
+    }
+
+    .dropdown-item {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .dropdown-item span {
+        font-size: 14px;
     }
 }
