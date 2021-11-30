@@ -5,6 +5,10 @@ form {
     text-align: center
 }
 
+.card-body li {
+    color: red;
+}
+
 .btn-results,
 footer h2,
 form label h1 {
