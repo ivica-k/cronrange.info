@@ -17,46 +17,53 @@
     <link defer rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"/>
     <!--    <link href="https://cronrange.info/css/style.min.css" rel="stylesheet">-->
-    <link href="./css/style.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
 </head>
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark d-flex justify-content-between">
         <div class="navbar-menu-logo">
             <a class="logo" title="Cron Range" href="/"><span class="cron">[CR-ON]</span> <span class="logo-orange">Range</span><sup>BETA</sup></a>
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Cron examples
-                    </a>
-                    <div class="dropdown-menu" id="cron-examples" aria-labelledby="navbarDropdown">
-                        <h6 class="dropdown-header">Standard cron expressions</h6>
-                        <a class="dropdown-item" href="#" value="*/5 * * * *">*/5 * * * *
-                            <br><span>- every five minutes</span></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" value="15 14 1 * *">15 14 1 * * <br><span>- at 14:15 every 1st of the month</span></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" value="0 0 1,15 * *">0 0 1,15 * * <br><span>- every 1st and 15th at 00:00</span></a>
-                        <div class="dropdown-divider dropdown-"></div>
-                        <h6 class="dropdown-header">AWS EventBridge expressions</h6>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" value="0 18 ? * MON-FRI *">0 18 ? * MON-FRI * <br><span>- at 18:00 between days Monday and Friday</span></a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#" value="0/50 8-17 ? * THU-FRI *">0/50 8-17 ? * THU-FRI *
-                            <br><span>- at minute 50 between hours 08:00-17:00 <br>between days Thursday and Friday</span></a>
-                    </div>
-                </li>
-            </ul>
         </div>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Cron examples
+                </a>
+                <div class="dropdown-menu" id="cron-examples" aria-labelledby="navbarDropdown">
+                    <h6 class="dropdown-header">Standard cron expressions</h6>
+                    <a class="dropdown-item" href="#" value="*/5 * * * *">*/5 * * * *
+                        <br><span>- every five minutes</span></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" value="15 14 1 * *">15 14 1 * * <br><span>- at 14:15 every 1st of the month</span></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" value="0 0 1,15 * *">0 0 1,15 * * <br><span>- every 1st and 15th at 00:00</span></a>
+                    <div class="dropdown-divider dropdown-"></div>
+                    <h6 class="dropdown-header">AWS EventBridge expressions</h6>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" value="0 18 ? * MON-FRI *">0 18 ? * MON-FRI * <br><span>- at 18:00 between days Monday and Friday</span></a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#" value="0/50 8-17 ? * THU-FRI *">0/50 8-17 ? * THU-FRI *
+                        <br><span>- at minute 50 between hours 08:00-17:00 <br>between days Thursday and Friday</span></a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#knownIssues">
+                    Known issues
+                </a>
+            </li>
+        </ul>
+
         <a href="https://github.com/ivica-k/chalice_cronrange" target="_blank"><img
-                src="https://cronrange.info/img/github.png" class="git-hub" title="GitHub"></a>
+                src="https://cronrange.info/img/github.png" class="github" title="GitHub"></a>
     </nav>
 
 </header>
 <main role="main" class="container-fluid">
     <div class="row">
         <div class="col-xl-4 offset-xl-4 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12 flex red">
+            <!-- da ova forma ima manje praznog prostora ispod i iznad-->
             <form class="form">
                 <div class="form-group">
                     <label><h1><span> -- </span>Starting date time (UTC)<span> -- </span></h1></label>
@@ -118,65 +125,19 @@
             expression</a> and pick the number of predictions you would like to see.</p>
     </div>
     <div class="container">
-        <div class="accordion" id="accordionFeatures">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse"
-                                data-target="#collapseFeatures"
-                                aria-expanded="true" aria-controls="collapseFeatures">
-                            Features
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapseFeatures" class="collapse" aria-labelledby="headingOne"
-                     data-parent="#accordionFeatures">
-                    <div class="card-body">
-                        <ul>
-                            <li>Show up to 100 executions of a standard <a
-                                    href="https://en.wikipedia.org/wiki/Cron" target="_blank"
-                                    class="link-cron-expression" title="Wikipedia - cron expression">UNIX-like cron
-                                expression</a></li>
-                            <li>Show up to 100 executions of an <a
-                                    href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html"
-                                    target="_blank" class="link-cron-expression" title="AWS EventBridge docs">AWS
-                                EventBridge cron
-                                expression</a> <sup>with known issues</sup></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="accordion" id="accordionIssues">
-            <div class="card">
-                <div class="card-header" id="headingTwo">
-                    <h5 class="mb-0">
-                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseIssues"
-                                aria-expanded="true" aria-controls="collapseIssues">
-                            Known issues
-                        </button>
-                    </h5>
-                </div>
-
-                <div id="collapseIssues" class="collapse" aria-labelledby="headingTwo"
-                     data-parent="#accordionIssues">
-                    <div class="card-body">
-                        <ul>
-                            <li>AWS EventBridge</li>
-                            <li>
-                                <ul>
-                                    <li>Wildcards "W" and "#" are not supported, making expressions like "*/30 * 1W * ?
-                                        *"
-                                        or "*/30 * ? * 3#2 *" invalid, although they work in EventBridge
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <a id="knownIssues"></a>
+        <h2>Known issues</h2>
+        <ul class="list-unstyled text-left">
+            <li>AWS EventBridge</li>
+            <li class="indented">
+                <ul class="list-unstyled text-left">
+                    <li><p>Wildcards "W" and "#" are not supported, making expressions like "*/30 * 1W * ?
+                        *"
+                        or "*/30 * ? * 3#2 *" invalid, although they work in EventBridge</p>
+                    </li>
+                </ul>
+            </li>
+        </ul>
     </div>
 </footer>
 

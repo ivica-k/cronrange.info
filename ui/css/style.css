@@ -24,6 +24,27 @@ html {
     padding-top: 70px
 }
 
+li.indented {
+    padding-left: 20px;
+}
+
+.card {
+    background: #313840;
+    font-family: Chivo, sans-serif;
+}
+
+.card-body {
+    line-height: 2rem;
+}
+
+.form {
+    height: 500px;
+}
+
+.nav-item {
+    display: inline-block;
+}
+
 .bg-dark {
     background: #262626!important;
 }
@@ -34,7 +55,7 @@ html {
 }
 
 .navbar-menu-logo {
-    width: 80%;
+    width: 20%;
 }
 
 .logo {
@@ -145,7 +166,7 @@ form label h1 {
 .invalid {
     background: #dc9f9f!important
 }
-.git-hub{
+.github{
 	margin-right: 20px;
 }
 .link-cron-expression{
