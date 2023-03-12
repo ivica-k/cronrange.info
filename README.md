@@ -40,11 +40,11 @@ curl -H "Content-Type:application/json" \
 ```
 
 ##### JSON structure
-| Key          | Description                                                                        | Default value          |
-|--------------|------------------------------------------------------------------------------------|------------------------|
-| `cron`       | A cron expression (string)                                                         | `None`                 |
-| `executions` | Number of next executions to show.                                                 | 10                     |
-| `start_date` | Date and time in DD.MM.YYYY. HH:MM format from which to calculate cron executions. | Current date and time. |
+| Key          | Description                                                                          | Default value            |
+|--------------|--------------------------------------------------------------------------------------|--------------------------|
+| `cron`       | A cron expression (string)                                                           | `None`                   |
+| `executions` | Number of next executions to show.                                                   | 10                       |
+| `start_date` | Date and time in `DD.MM.YYYY. HH:MM` format from which to calculate cron executions. | Current date and time.   |
 
 ### AWS EventBridge support
 AWS EventBridge implementation of cron does not use 0 based day of week, instead it is `1-7 SUN-SAT` (instead of `0-6`), 
