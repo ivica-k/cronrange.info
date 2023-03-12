@@ -1,22 +1,6 @@
 {
   "version": "2.0",
   "app_name": "cron_range",
-  "environment_variables": {
-    "LOG_LEVEL": "DEBUG",
-    "MAX_EXECUTIONS": "100"
-  },
-  "stages": {
-    "dev": {
-      "api_gateway_stage": "api",
-      "lambda_timeout": 5,
-      "lambda_memory_size": 128,
-      "reserved_concurrency": 5
-    },
-    "prod": {
-      "api_gateway_stage": "api",
-      "lambda_timeout": 5,
-      "lambda_memory_size": 128,
-      "reserved_concurrency": 5
-    }
-  }
+  "environment_variables": {},
+  "stages": {}
 }

@@ -1,0 +1,10 @@
+{
+  "hosted-zone:account=932785857088:domainName=cronrange.info:region=us-east-1": {
+    "Id": "/hostedzone/Z02039833D5X2TDR0KFEY",
+    "Name": "cronrange.info."
+  },
+  "hosted-zone:account=932785857088:domainName=cronrange.info:region=eu-central-1": {
+    "Id": "/hostedzone/Z02039833D5X2TDR0KFEY",
+    "Name": "cronrange.info."
+  }
+}
