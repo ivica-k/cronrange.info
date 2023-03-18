@@ -4,8 +4,10 @@ set -e
 ENV="${ENV:=dev}"
 
 test -d venv || virtualenv -p python3 venv
-venv/bin/pip install -Ur requirements.txt
+venv/bin/pip install -Ur test_requirements.txt
 venv/bin/pip install awscli
+
+venv/bin/python -m unittest discover
 
 # SSM param created with CDK
 API_URL=$(aws ssm get-parameter --name "/${ENV}/cronrange/api_url" | jq -r '.Parameter.Value')

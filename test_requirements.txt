@@ -1,4 +1,5 @@
 -r requirements.txt
+-r dev_requirements.txt
 parameterized==0.8.1
 requests==2.26.0
 freezegun==1.2.2
