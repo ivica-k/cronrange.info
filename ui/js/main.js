@@ -1,18 +1,3 @@
-function copy(selector) {
-    var $temp = $('<div>');
-    $('body').append($temp);
-    $temp
-        .attr('contenteditable', true)
-        .html($(selector).html())
-        .select()
-        .on('focus', function () {
-            document.execCommand('selectAll', false, null);
-        })
-        .focus();
-    document.execCommand('copy');
-    $temp.remove();
-}
-
 function chunkArray(myArray, chunk_size) {
     var index = 0;
     var arrayLength = myArray.length;
@@ -65,8 +50,8 @@ $("#cron-examples a").click(function (element) {
             json_data.datetime = $("#dtpicker").val();
             json_data.cron = $("#cron_expression").val();
             json_data.executions = $("#iterations").val();
-            $("#modalTitle").text("Next " + json_data.executions + " executions");
-            $.ajax("http://localhost:8000/", {            
+            $("#modalTitle").text("Next " + json_data.executions + " executions for expression: " + json_data.cron);
+            $.ajax("http://localhost:8000/", {
                 data: JSON.stringify(json_data),
                 contentType: "application/json",
                 type: "POST",
@@ -77,7 +62,7 @@ $("#cron-examples a").click(function (element) {
                     $("#cron_expression").removeClass("invalid");
                     var columns = chunkArray(data.cron_ranges, 25);
                     $.each(columns, function(index, column) {
-                        lis = "<ol>"; 
+                        lis = "<ol>";
                         $.each(column, function(index, element) {
                             lis += "<li>" + element + " UTC</li>"
                         }); 
@@ -93,6 +78,7 @@ $("#cron-examples a").click(function (element) {
                             $("ol").addClass("three-columns");
                         }
                     });
+
                 },
                 error: function(err){
                     $("#alert").addClass("alert-error");

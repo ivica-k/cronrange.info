@@ -1,12 +1,12 @@
 #result li,
 .form-control,
-footer .container,
+.explanation .container,
 form {
     text-align: center
 }
 
 .btn-results,
-footer h2,
+.explanation h2,
 form label h1 {
     text-transform: uppercase
 }
@@ -17,7 +17,7 @@ html {
     min-height: 100%!important;
     height: 100%;
     background: #313840;
-    padding-top: 70px
+    padding-top: 30px
 }
 
 .bg-dark {
@@ -39,11 +39,11 @@ html {
     display: inline-block;
 }
 
-.logo:hover, .logo,.btn-results,.btn-copy,footer .container {
+.logo:hover, .logo, .btn-results, .explanation .container {
 	color: #fff !important;
 }
 
-sup{
+sup {
 	font-size: 10px;
 	font-weight: 500;
 	top: -1.5em !important;
@@ -70,7 +70,6 @@ form label span{
 
 .flex {
     height: 100%;
-    min-height: 580px;
     display: flex;
     flex-direction: column;
     justify-content: center
@@ -100,37 +99,35 @@ form label h1 {
 .btn-results {
     width: 180px;
     height: 50px;
-    margin: 0 auto 50px;
+    margin: 0 auto 45px;
     background: #01B59F;
 }
 
-.btn-copy {
-    background: orange;
+#result {
+    margin-top: 16px;
 }
 
 #result ol {
     float: left;
     width: 25%;
-    padding-left: 0
+    padding-left: 0;
 }
 
 #result li {
     list-style: none
 }
 
-.one-column {
+#result ol.one-column {
     float: none!important;
     margin: 0 auto
 }
 
-.two-columns {
-    width: 33%!important;
-    margin: 0 0 0 10%
+#result ol.two-columns {
+    width: 50%;
 }
 
-.three-columns {
-    width: 33%!important;
-    margin: 0 auto
+#result ol.three-columns {
+    width: 33%;
 }
 
 .modal-dialog {
@@ -141,35 +138,43 @@ form label h1 {
 .invalid {
     background: #dc9f9f!important
 }
+
 .github{
 	margin-right: 20px;
 }
+
 .link-cron-expression{
 	color: #fff;
 	border-bottom: 1px solid #01B59F;
 }
+
 .link-cron-expression:hover{
 	text-decoration: none;
 	color: orange;
 }
-footer .container {
-    padding: 45px 10px;
+
+.explanation .container {
+    padding: 60px 10px;
 }
 
-footer p {
+.explanation p {
     font-weight: 300
 }
 
-footer h2 {
+.explanation h2 {
     font-size: 20px;
     padding-bottom: 10px
 }
+
 .alert{
 	display: none;
 }
+
+
 .alert p{
 	margin: 0;
 }
+
 .alert-error{
 	margin-top: 10px;
 	display: block;
@@ -177,17 +182,17 @@ footer h2 {
 
 @media only screen and (max-width:1100px) {
     #result ol {
-        width: 50%
+        width: 50%!important;
     }
 }
 
 @media only screen and (max-width:580px) {
     #result ol {
-        width: 100%
+        width: 100%!important;
     }
     body,
     html {
-        padding-top: 60px
+        padding-top: 45px
     }
 }
 
@@ -212,5 +217,9 @@ footer h2 {
 
     .dropdown-item span {
         font-size: 14px;
+    }
+
+    .explanation .container {
+        padding-bottom: 25px;
     }
 }

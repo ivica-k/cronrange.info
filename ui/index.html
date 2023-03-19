@@ -25,17 +25,17 @@
               </a>
               <div class="dropdown-menu" id="cron-examples" aria-labelledby="navbarDropdown">
                 <h6 class="dropdown-header">Standard cron expressions</h6>
-                <a class="dropdown-item" href="#" value="*/5 * * * *">*/5 * * * * <br><span>- every five minutes</span></a>
+                <a class="dropdown-item" href="#" value="*/5 * * * *">*/5 * * * * <br><span value="*/5 * * * *">- every five minutes</span></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" value="15 14 1 * *">15 14 1 * * <br><span>- at 14:15 every 1st of the month</span></a>
+                <a class="dropdown-item" href="#" value="15 14 1 * *">15 14 1 * * <br><span value="15 14 1 * *">- at 14:15 every 1st of the month</span></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" value="0 0 1,15 * *">0 0 1,15 * * <br><span>- every 1st and 15th at 00:00</span></a>
+                <a class="dropdown-item" href="#" value="0 0 1,15 * *">0 0 1,15 * * <br><span value="0 0 1,15 * *">- every 1st and 15th at 00:00</span></a>
                 <div class="dropdown-divider dropdown-"></div>
                 <h6 class="dropdown-header">AWS EventBridge expressions</h6>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" value="0 18 ? * MON-FRI *">0 18 ? * MON-FRI * <br><span>- at 18:00 between days Monday and Friday</span></a>
+                <a class="dropdown-item" href="#" value="0 18 ? * MON-FRI *">0 18 ? * MON-FRI * <br><span value="0 18 ? * MON-FRI *">- at 18:00 between days Monday and Friday</span></a>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#" value="0/50 8-17 ? * THU-FRI *">0/50 8-17 ? * THU-FRI * <br><span>- at minute 50 between hours 08:00-17:00 <br>between days Thursday and Friday</span></a>
+                <a class="dropdown-item" href="#" value="0/50 8-17 ? * THU-FRI *">0/50 8-17 ? * THU-FRI * <br><span value="0/50 8-17 ? * THU-FRI *">- at minute 50 between hours 08:00-17:00 <br>between days Thursday and Friday</span></a>
               </div>
             </li>
           </ul>
@@ -45,8 +45,17 @@
 
     </header>
     <main role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-xl-6 offset-xl-3 col-lg-8 offset-lg-2 col-md-8 offset-md-2 col-sm-12 col-12 explanation">
+                <div class="container">
+                <h2>Have you ever wondered when will your cron job be triggered, or how many times? </h2>
+                <p><span class="cron"><b>Cron</b></span> <span class="range"><b>Range</b></span> allows you to easily calculate up to 100 dates and times of your cron job executions. Now with support for <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html" target="_blank" class="link-cron-expression" title="AWS EventBridge docs">AWS EventBridge expressions</a>!</p>
+                <p>Choose a starting datetime, enter the <a href="https://en.wikipedia.org/wiki/Cron" target="_blank" class="link-cron-expression" title="Wikipedia - cron expression">cron expression</a> and pick the number of scheduled events you would like to see.</p>
+              </div>
+            </div>
+        </div>
       <div class="row">
-        <div class="col-xl-4 offset-xl-4 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12 flex red">
+        <div class="col-xl-4 offset-xl-4 col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-12 col-12 flex">
           <form class="form">
             <div class="form-group">
               <label><h1><span> -- </span>Starting date time (UTC)<span> -- </span></h1></label>
@@ -82,20 +91,12 @@
                 </div>
                 <div class="modal-body"><p id="result"></p></div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-copy" id="btn-copy" onclick="copy('#result')" data-container="body" data-toggle="popover" data-placement="top" title="Copy results">Copy results</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal" title="Close">Close</button>
                 </div>
             </div>
         </div>
     </div>
 </main>
-<footer>
-  <div class="container">
-    <h2>Have you ever wondered when will your cron job be triggered, or how many times? </h2>
-    <p><span class="cron"><b>Cron</b></span> <span class="range"><b>Range</b></span> allows you to easily calculate up to 100 dates and times of your cron job executions. Now with support for <a href="https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html" target="_blank" class="link-cron-expression" title="AWS EventBridge docs">AWS EventBridge expressions</a>!</p>
-    <p>Choose a starting datetime, enter the <a href="https://en.wikipedia.org/wiki/Cron" target="_blank" class="link-cron-expression" title="Wikipedia - cron expression">cron expression</a> and pick the number of scheduled events you would like to see.</p>
-  </div>
-</footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
