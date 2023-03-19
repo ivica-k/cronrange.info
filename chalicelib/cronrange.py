@@ -38,7 +38,7 @@ def parse_args():
 	)
 	parser.add_argument(
 		"-d",
-		"--start_date",
+		"--start-date",
 		default=datetime.now().strftime(DATETIME_FORMAT),
 		help="Date and time in DD.MM.YYYY. HH:MM format from which to calculate cron executions."
 		     " Defaults to current date and time.",

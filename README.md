@@ -17,7 +17,7 @@ python chalicelib/cronrange.py
 |-------------------|------------------------------------------------------------------------------------|------------------------|
 | `-c/--cron`       | A cron expression (string)                                                         | `None`                 |
 | `-n/--executions` | Number of next executions to show.                                                 | 5                      |
-| `-d/--start_date` | Date and time in DD.MM.YYYY. HH:MM format from which to calculate cron executions. | Current date and time. |
+| `-d/--start-date` | Date and time in DD.MM.YYYY. HH:MM format from which to calculate cron executions. | Current date and time. |
 
 ##### Examples
 ```bash
