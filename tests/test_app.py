@@ -101,6 +101,21 @@ class TestChaliceApp(unittest.TestCase):
             self.assertEqual(response.get("statusCode"), 400)
             assert "Malformed JSON" in response_body.get("message")
 
+    def test_bad_cron_exception_produces_a_user_friendly_message(
+        self,
+    ):
+        body = json.dumps({"cron": "*****", "executions": 10})
+        response = self.chalice_gateway.handle_request(
+            method="POST",
+            path="/",
+            headers={"Content-Type": "application/json"},
+            body=body,
+        )
+
+        response_body = json.loads(response.get("body"))
+
+        assert "Bad cron expression" in response_body.get("message")
+
 
 if __name__ == "__main__":
     unittest.main()

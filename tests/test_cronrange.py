@@ -1,6 +1,11 @@
 import unittest
 from datetime import datetime
-from chalicelib import get_cron_range, _convert_string_to_datetime, DATETIME_FORMAT
+from chalicelib import (
+    get_cron_range,
+    _convert_string_to_datetime,
+    DATETIME_FORMAT,
+    BadCronException,
+)
 
 from parameterized import parameterized
 from freezegun import freeze_time
@@ -58,18 +63,18 @@ class TestCronRange(unittest.TestCase):
         ]
     )
     def test_invalid_cron_expression(self, cron_expression):
-        self.assertRaises(Exception, get_cron_range, 1, cron_expression)
+        self.assertRaises(BadCronException, get_cron_range, 1, cron_expression)
 
     @parameterized.expand(
         [
-            (10, "0 10 * * ? *"),  # EventBridge-style
-            (10, "15 12 * * ? *"),  # EventBridge-style
-            (10, "0 18 ? * MON-FRI *"),  # EventBridge-style
-            (10, "0 8 1 * ? *"),  # EventBridge-style
-            (10, "59 0/12 * * ? *"),  # EventBridge-style
-            (10, "0/50 8-17 ? * THU-FRI *"),  # EventBridge-style
-            (10, "*/5 * L * ? *"),  # EventBridge-style
-            (10, "0 10 1 JAN,FEB,MAR ? *"),  # EventBridge-style
+            (10, "0 10 * * ? *"),
+            (10, "15 12 * * ? *"),
+            (10, "0 18 ? * MON-FRI *"),
+            (10, "0 8 1 * ? *"),
+            (10, "59 0/12 * * ? *"),
+            (10, "0/50 8-17 ? * THU-FRI *"),
+            (10, "*/5 * L * ? *"),
+            (10, "0 10 1 JAN,FEB,MAR ? *"),
         ]
     )
     @freeze_time("2023-3-12 18:00:00", as_kwarg="frozen_time")

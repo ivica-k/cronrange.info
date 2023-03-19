@@ -16,6 +16,10 @@ log.addHandler(stream_handler)
 DATETIME_FORMAT = "%d.%m.%Y. %H:%M"
 
 
+class BadCronException(Exception):
+	pass
+
+
 def parse_args():
 	parser = argparse.ArgumentParser()
 
@@ -85,9 +89,11 @@ def get_cron_range(num_items, cron_expression, start_datetime=datetime.now().str
 
 		return cron_executions
 
-	except (CroniterBadDateError, CroniterNotAlphaError, CroniterBadCronError):
-		log.error(f"Bad cron expression: '{cron_expression}'")
-		raise Exception(f"Bad cron expression: '{cron_expression}'")
+	except (CroniterBadDateError, CroniterNotAlphaError, CroniterBadCronError) as exc:
+		message = f"Bad cron expression: '{cron_expression}'. {exc}"
+		log.error(message)
+
+		raise BadCronException(message)
 
 	except Exception as ex:
 		log.exception(ex)

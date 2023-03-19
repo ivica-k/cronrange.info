@@ -1,6 +1,6 @@
 import os
 
-from chalicelib import get_cron_range
+from chalicelib import get_cron_range, BadCronException
 from chalice import Chalice, Response, BadRequestError, ConvertToMiddleware
 from datetime import datetime
 
@@ -45,24 +45,23 @@ def index_handler():
 
         return Response(
             status_code=400,
-            body={
-                "message": message
-            },
+            body={"message": message},
         )
 
     except ValueError:
         message = "Field 'executions' must be a number"
         logger.error(message)
 
-        return Response(
-            status_code=400, body={"message": message}
-        )
+        return Response(status_code=400, body={"message": message})
 
     except BadRequestError:
         message = "Malformed JSON"
         logger.error(message)
 
         return Response(status_code=400, body={"message": message})
+
+    except BadCronException as exc:
+        return Response(status_code=400, body={"message": f"{exc}"})
 
     except Exception as ex:
         logger.error(f"Unknown error: {str(ex)}")
