@@ -1,18 +1,12 @@
 import sys
-import logging
 import argparse
 
 from datetime import datetime
 
 from croniter import croniter, CroniterBadCronError, CroniterBadDateError, CroniterNotAlphaError
+from aws_lambda_powertools import Logger
 
-
-log = logging.getLogger(__name__)
-log_format = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(log_format)
-stream_handler.setLevel(logging.DEBUG)
-log.addHandler(stream_handler)
+logger = Logger()
 DATETIME_FORMAT = "%d.%m.%Y. %H:%M"
 
 
@@ -49,11 +43,11 @@ def parse_args():
 
 
 def _convert_string_to_datetime(datetime_string):
-	log.debug(f"Converting '{datetime_string}' to datetime object")
+	logger.debug(f"Converting '{datetime_string}' to datetime object")
 	try:
 		return datetime.strptime(datetime_string, DATETIME_FORMAT)
 	except ValueError as val_ex:
-		log.error(f"{val_ex}, defaulting to current datetime")
+		logger.error(f"{val_ex}, defaulting to current datetime")
 		sys.exit(1)
 
 
@@ -62,12 +56,12 @@ def handle_eventbridge_expression(cron_expression):
 	# min	hour	day-of-month	month	day-of-week	year
 	# 0/5	8-17	? 				*		MON-FRI 	*
 
-	log.info(f"Received EventBridge style cron expression '{cron_expression}'")
+	logger.info(f"Received EventBridge style cron expression '{cron_expression}'")
 	minute, hour, day_of_month, month, day_of_week, year = cron_expression.split()
 
 	# remove '?' and omit the year so that the `croniter` library accepts the expression
 	compatible_expression = f"{minute} {hour} {day_of_month} {month} {day_of_week}".replace("?", "*")
-	log.info(f"Converted to '{compatible_expression}'")
+	logger.debug(f"Converted to '{compatible_expression}'")
 
 	return compatible_expression
 
@@ -76,7 +70,7 @@ def get_cron_range(num_items, cron_expression, start_datetime=datetime.now().str
 	cron_executions = []
 	if isinstance(start_datetime, str):
 		start_datetime = _convert_string_to_datetime(start_datetime)
-	log.debug(f"Getting {num_items} iterations for '{cron_expression}' starting at '{start_datetime}'")
+	logger.debug(f"Getting {num_items} iterations for '{cron_expression}' starting at '{start_datetime}'")
 
 	if len(cron_expression.split()) == 6 and "?" in cron_expression:
 		cron_expression = handle_eventbridge_expression(cron_expression)
@@ -90,13 +84,13 @@ def get_cron_range(num_items, cron_expression, start_datetime=datetime.now().str
 		return cron_executions
 
 	except (CroniterBadDateError, CroniterNotAlphaError, CroniterBadCronError) as exc:
-		message = f"Bad cron expression: '{cron_expression}'. {exc}"
-		log.error(message)
+		message = f"Bad cron expression: '{cron_expression}'"
+		logger.error(f"{message}. {exc}")
 
 		raise BadCronException(message)
 
 	except Exception as ex:
-		log.exception(ex)
+		logger.exception(ex)
 
 
 if __name__ == "__main__":

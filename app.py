@@ -18,6 +18,9 @@ app.register_middleware(ConvertToMiddleware(logger.inject_lambda_context))
 def index_handler():
     try:
         request_json = app.current_request.json_body
+        if not request_json:
+            raise Exception("Missing JSON payload in body")
+
         cron = request_json["cron"]
         executions = int(request_json.get("executions", 10))
         date_time = request_json.get("datetime", datetime.now())
