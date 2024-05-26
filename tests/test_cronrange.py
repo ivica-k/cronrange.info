@@ -67,27 +67,31 @@ class TestCronRange(unittest.TestCase):
 
     @parameterized.expand(
         [
-            (10, "0 10 * * ? *"),
-            (10, "15 12 * * ? *"),
-            (10, "0 18 ? * MON-FRI *"),
-            (10, "0 8 1 * ? *"),
-            (10, "59 0/12 * * ? *"),
-            (10, "0/50 8-17 ? * THU-FRI *"),
-            (10, "*/5 * L * ? *"),
-            (10, "0 10 1 JAN,FEB,MAR ? *"),
+            ("0 10 * * ? *",),
+            ("15 12 * * ? *",),
+            ("0 18 ? * MON-FRI *", "2024-5-26 22:20:00"),
+            ("0 8 1 * ? *",),
+            ("59 0/12 * * ? *",),
+            ("0/50 8-17 ? * THU-FRI *",),
+            ("*/5 * L * ? *",),
+            ("0 10 1 JAN,FEB,MAR ? *",),
+            ("0 16 ? * 1-5 *", "2024-5-23 12:00:00"),
+            ("0 5 ? * 1-5 *", "2024-5-23 18:00:00"),
+            ("0 18 ? * 2 *", "2024-5-26 22:20:00"),
         ]
     )
-    @freeze_time("2023-3-12 18:00:00", as_kwarg="frozen_time")
     def test_get_cron_range_matches_event_bridge(
-        self, num_ranges, cron_expression, frozen_time
+        self, cron_expression, time_to_freeze="2023-3-12 18:00:00"
     ):
-        start = frozen_time.time_to_freeze.strftime(DATETIME_FORMAT)
-        expected_values = EVENTBRIDGE_OUTPUTS.get(cron_expression)
-        actual_values = get_cron_range(
-            num_ranges, cron_expression, start_datetime=start
-        )
+        with freeze_time(time_to_freeze):
+            expected_values = EVENTBRIDGE_OUTPUTS.get(cron_expression)
+            actual_values = get_cron_range(
+                num_items=10,
+                cron_expression=cron_expression,
+                start_datetime=datetime.now().strftime(DATETIME_FORMAT),
+            )
 
-        self.assertAllDatesEqual(actual_values, expected_values)
+            self.assertAllDatesEqual(actual_values, expected_values)
 
 
 if __name__ == "__main__":
